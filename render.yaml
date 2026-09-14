@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: enrichly-api
+    runtime: docker
+    dockerfilePath: ./deploy/api.Dockerfile
+    dockerContext: .
+    healthCheckPath: /swagger/index.html
+    envVars:
+      - key: ConnectionStrings__SqlServer
+        sync: false
+      - key: Jwt__Issuer
+        value: Enrichly.JobAutomation
+      - key: Jwt__Audience
+        value: Enrichly.JobAutomation
+      - key: Jwt__Key
+        sync: false
+      - key: Frontend__Origin
+        sync: false
+
+  - type: worker
+    name: enrichly-worker
+    runtime: docker
+    dockerfilePath: ./deploy/worker.Dockerfile
+    dockerContext: .
+    envVars:
+      - key: ConnectionStrings__SqlServer
+        sync: false
+      - key: Worker__PollIntervalSeconds
+        value: "5"
+      - key: Worker__RequestTimeoutSeconds
+        value: "15"
+      - key: Worker__MaxAttempts
+        value: "3"
+      - key: Worker__StaleExecutionMinutes
+        value: "5"
+      - key: Worker__ReclaimIntervalSeconds
+        value: "60"
+      - key: Worker__SchedulerIntervalSeconds
+        value: "5"

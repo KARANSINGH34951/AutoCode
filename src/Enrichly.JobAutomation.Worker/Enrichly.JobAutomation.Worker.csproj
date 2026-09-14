@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Enrichly.JobAutomation.Worker-668fee83-5b91-4855-87d3-79c3bdef9c42</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.20" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Enrichly.JobAutomation.Application\Enrichly.JobAutomation.Application.csproj" />
+    <ProjectReference Include="..\Enrichly.JobAutomation.Infrastructure\Enrichly.JobAutomation.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
